@@ -1,118 +1,783 @@
-<!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
-
-<title>UV Labs</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>UV Labs - Elite Healthcare Professional</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Fira+Code:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<!-- AI Chatbox -->
+    
+    <div class="loader-screen" id="loader">
+        <div class="loader-container">
+            <div class="health-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="terminal-title">MEDICAL PROTOCOL INITIALIZATION</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt">root@uvlabs:~$</span>
+                        <span class="command">./init_health.sh</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">[INFO] Scanning health vulnerabilities...</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">[INFO] Health configuration: <span class="success">ACTIVE</span></span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">[INFO] Medical protocols: <span class="success">ENABLED</span></span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output">[INFO] Pathogen detection: <span class="success">NONE</span></span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="output success">[SUCCESS] No abnormalities. Subject safe.</span>
+                    </div>
+                    <div class="terminal-line">
+                        <span class="prompt">root@uvlabs:~$</span>
+                        <span class="cursor">_</span>
+                    </div>
+                </div>
+            </div>
+            <div class="loader-progress-container">
+                <div class="loader-progress-bar" id="loaderProgress"></div>
+                <div class="loader-percentage" id="loaderPercent">0%</div>
+            </div>
+            <div class="health-lines">
+                <div class="health-line"></div>
+                <div class="health-line"></div>
+                <div class="health-line"></div>
+            </div>
+        </div>
+    </div>
 
-<div id="chatbox">
+    <header class="header" id="header">
+        <div class="header-container">
+            <nav class="nav">
+                <a href="#home" class="nav-brand">
+                    <div class="brand-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span class="brand-text">UV Labs</span>
+                </a>
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <span class="nav-text">Home</span>
+                    </a>
+                    <a href="#health" class="nav-link" data-section="health">
+                        <span class="nav-text">Operations</span>
+                    </a>
+                    <a href="#about" class="nav-link" data-section="about">
+                        <span class="nav-text">About</span>
+                    </a>
+                    <a href="#ai-healthcare-solutions" class="nav-link" data-section="ai-healthcare-solutions">
+                        <span class="nav-text">AI Healthcare Solutions</span>
+                    </a>
+                    <a href="#core-technologies" class="nav-link" data-section="core-technologies">
+                        <span class="nav-text">Core Technologies</span>
+                    </a>
+                    <a href="#contact" class="nav-link" data-section="contact">
+                        <span class="nav-text">Contact</span>
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <button class="dir-toggle" id="dirToggle" title="Toggle Direction">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="dir-text">RTL</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-<div id="chat-header">
-UV Labs AI Assistant
-</div>
+    <main class="main">
+        
+        <section id="home" class="section hero">
+            <div class="hero-bg">
+                <canvas id="matrixCanvas"></canvas>
+                <div class="grid-overlay"></div>
+                <div class="scan-line"></div>
+                <div class="hack-particles" id="hackParticles"></div>
+            </div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <div class="badge-pulse"></div>
+                        <i class="fas fa-shield-check"></i>
+                        <span>ELITE HEALTH EXPERT</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-word" data-word="AI">AI</span>
+                        <span class="title-word highlight" data-word="HEALTHCARE">HEALTHCARE</span>
+                        <span class="title-word" data-word="INNOVATION">INNOVATION</span>
+                    </h1>
+                    <div class="hero-subtitle">
+                        <span class="subtitle-text">Symptom Analysis</span>
+                        <span class="subtitle-separator">|</span>
+                        <span class="subtitle-text">Healthcare Assesment</span>
+                        <span class="subtitle-separator">|</span>
+                        <span class="subtitle-text">Medical suggestions</span>
+                    </div>
+                    <p class="hero-description">
+                        AI-driven healthcare research and technology company focused on making healthcare 
+accessible, efficient, and proactive.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="12">0</div>
+                                <div class="stat-label">AI Health Models</div>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="03">0</div>
+                                <div class="stat-label">Research Domains</div>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="50">0</div>
+                                <div class="stat-label">Test Scenarios</div>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number" data-count="1000">0</div>
+                                <div class="stat-label">Future Patients Impact</div>
+                            </div>
+                            <div class="stat-glow"></div>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <span>Run Health Check</span>
+                            <i class="fas fa-heartbeat"></i>
+                            <div class="btn-shine"></div>
+                        </a>
+                        <a href="#services" class="btn btn-secondary">
+                            <span>Explore Solutions</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="health-monitor">
+                        <div class="monitor-frame">
+                            <div class="monitor-screen">
+                                <div class="screen-content">
+                                    <div class="screen-header">
+                                        <div class="screen-dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                        <div class="screen-title">HEALTH DASHBOARD</div>
+                                    </div>
+                                    <div class="screen-body">
+                                        <div class="dashboard-item">
+                                            <div class="dashboard-label">Heart Rate</div>
+                                            <div class="dashboard-value active">72 BPM</div>
+                                            <div class="dashboard-bar">
+                                                <div class="dashboard-progress" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="dashboard-item">
+                                            <div class="dashboard-label">Blood Pressure</div>
+                                            <div class="dashboard-value active">120/80</div>
+                                            <div class="dashboard-bar">
+                                                <div class="dashboard-progress" style="width: 95%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="dashboard-item">
+                                            <div class="dashboard-label">Oxygen Level</div>
+                                            <div class="dashboard-value active">98%</div>
+                                            <div class="dashboard-bar">
+                                                <div class="dashboard-progress" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="dashboard-item">
+                                            <div class="dashboard-label">Temperature</div>
+                                            <div class="dashboard-value active">98.6°F</div>
+                                            <div class="dashboard-bar">
+                                                <div class="dashboard-progress" style="width: 98%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="monitor-stand"></div>
+                        </div>
+                        <div class="floating-icons">
+                            <div class="float-icon icon-1">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="float-icon icon-2">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <div class="float-icon icon-3">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <div class="float-icon icon-4">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span>Scroll to explore</span>
+            </div>
+        </section>
 
-<div id="chat-messages"></div>
+        <section id="health" class="section health-section">
+            <div class="section-bg">
+                <div class="section-pattern"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">00</span>
+                    <h2 class="section-title">
+                        <span class="title-text">Healthcare Services</span>
+                        <span class="title-underline"></span>
+                    </h2>
+                </div>
+                <div class="health-slider">
+                    <div class="slider-main-container">
+                        <div class="slider-viewport">
+                            <div class="slider-track" id="sliderTrack">
+                                <div class="slider-slide active">
+                                    <div class="slide-card">
+                                        <div class="slide-bg-gradient slide-bg-1"></div>
+                                        <div class="slide-pattern"></div>
+                                        <div class="slide-content-wrapper">
+                                            <div class="slide-icon-container">
+                                                <div class="slide-icon-border"></div>
+                                                <i class="fas fa-stethoscope"></i>
+                                                <div class="icon-ripple"></div>
+                                            </div>
+                                            <h3 class="slide-title">Symptoms Tracker</h3>
+                                            <p class="slide-description">Understand symptoms through guided AI-based questioning.</p>
+                                            <div class="slide-metrics">
+                                                <div class="metric-item">
+                                                    <span class="metric-value">500+</span>
+                                                    <span class="metric-label">Symptoms</span>
+                                                </div>
+                                                <div class="metric-item">
+                                                    <span class="metric-value">98%</span>
+                                                    <span class="metric-label">Success</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider-slide">
+                                    <div class="slide-card">
+                                        <div class="slide-bg-gradient slide-bg-2"></div>
+                                        <div class="slide-pattern"></div>
+                                        <div class="slide-content-wrapper">
+                                            <div class="slide-icon-container">
+                                                <div class="slide-icon-border"></div>
+                                                <i class="fas fa-heartbeat"></i>
+                                                <div class="icon-ripple"></div>
+                                            </div>
+                                            <h3 class="slide-title">Predictive Health Insights</h3>
+                                            <p class="slide-description">Detect potential risks before they become serious.</p>
+                                            <div class="slide-metrics">
+                                                <div class="metric-item">
+                                                    <span class="metric-value">Private API-1</span>
+                                                    <span class="metric-label">Level</span>
+                                                </div>
+                                                <div class="metric-item">
+                                                    <span class="metric-value">98%</span>
+                                                    <span class="metric-label">Secure</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider-slide">
+                                    <div class="slide-card">
+                                        <div class="slide-bg-gradient slide-bg-3"></div>
+                                        <div class="slide-pattern"></div>
+                                        <div class="slide-content-wrapper">
+                                            <div class="slide-icon-container">
+                                                <div class="slide-icon-border"></div>
+                                                <i class="fas fa-syringe"></i>
+                                                <div class="icon-ripple"></div>
+                                            </div>
+                                            <h3 class="slide-title">Clinical Decision Support</h3>
+                                            <p class="slide-description">Assist healthcare professionals with intelligent insights.</p>
+                                            <div class="slide-metrics">
+                                                <div class="metric-item">
+                                                    <span class="metric-value">1000+</span>
+                                                    <span class="metric-label">Scans</span>
+                                                </div>
+                                                <div class="metric-item">
+                                                    <span class="metric-value">95%</span>
+                                                    <span class="metric-label">Accuracy</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider-slide">
+                                    <div class="slide-card">
+                                        <div class="slide-bg-gradient slide-bg-4"></div>
+                                        <div class="slide-pattern"></div>
+                                        <div class="slide-content-wrapper">
+                                            <div class="slide-icon-container">
+                                                <div class="slide-icon-border"></div>
+                                                <i class="fas fa-brain"></i>
+                                                <div class="icon-ripple"></div>
+                                            </div>
+                                            <h3 class="slide-title">Health Data Intelligence</h3>
+                                            <p class="slide-description">Analyze health data to extract meaningful patterns.</p>
+                                            <div class="slide-metrics">
+                                                <div class="metric-item">
+                                                    <span class="metric-value">24/7</span>
+                                                    <span class="metric-label">Support</span>
+                                                </div>
+                                                <div class="metric-item">
+                                                    <span class="metric-value"><5min</span>
+                                                    <span class="metric-label">Response</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider-slide">
+                                    <div class="slide-card">
+                                        <div class="slide-bg-gradient slide-bg-5"></div>
+                                        <div class="slide-pattern"></div>
+                                        <div class="slide-content-wrapper">
+                                            <div class="slide-icon-container">
+                                                <div class="slide-icon-border"></div>
+                                                <i class="fas fa-hospital"></i>
+                                                <div class="icon-ripple"></div>
+                                            </div>
+                                            <h3 class="slide-title">Preventive Healthcare AI</h3>
+                                            <p class="slide-description">Shift healthcare from reactive treatment to prevention.</p>
+                                            <div class="slide-metrics">
+                                                <div class="metric-item">
+                                                    <span class="metric-value">500+</span>
+                                                    <span class="metric-label">Analysis</span>
+                                                </div>
+                                                <div class="metric-item">
+                                                    <span class="metric-value">99%</span>
+                                                    <span class="metric-label">Secure</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-nav-btn prev-btn" id="prevBtn">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="slider-indicators" id="sliderIndicators"></div>
+                            <button class="slider-nav-btn next-btn" id="nextBtn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="slider-footer">
+                            <div class="slider-counter">
+                                <span class="current-slide" id="currentSlide">01</span>
+                                <span class="slide-separator">/</span>
+                                <span class="total-slides" id="totalSlides">05</span>
+                            </div>
+                            <div class="slider-progress-wrapper">
+                                <div class="slider-progress-bar">
+                                    <div class="slider-progress-fill" id="sliderProgress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div id="chat-input-area">
-<input type="text" id="chat-input" placeholder="Ask something...">
-<button onclick="sendMessage()">Send</button>
-</div>
-
-</div>
-
-<canvas id="bg"></canvas>
-
-<header>
-
-<h1>UV Labs</h1>
-
-<p>The Future of AI-Powered Healthcare</p>
-
-<a class="btn" href="#more">Learn More</a>
-
-</header>
-
-<nav>
-
-<a href="#more">About</a>
-<a href="#support">Waitlist</a>
-<a href="#founder">Founder</a>
-
-</nav>
-
-<section id="more" class="fade">
-
-<h2>What is UV Labs?</h2>
-
-<p>
-UV Labs is an AI-driven healthcare research and technology company focused on building intelligent solutions that make healthcare more accessible, efficient, and proactive.
-</p>
-
-<p>
-We combine artificial intelligence, medical research, and advanced technology to create tools that help people understand their health better and enable smarter healthcare decisions.
-</p>
-
-<p>
-Our mission is to transform healthcare from reactive treatment into intelligent prevention through AI-powered insights.
-</p>
-
-</section>
-
-<section id="support" class="fade">
-
-<h2>Join the UV Labs Waitlist</h2>
-
-<p>Be among the first to experience the future of AI healthcare.</p>
-
-<form id="waitlistForm">
-
-<input type="text" placeholder="Full Name" required>
-
-<input type="email" placeholder="Email Address" required>
-
-<button type="submit">Join Waitlist</button>
-
-</form>
-
-<p id="message"></p>
-
-</section>
-
-<section id="founder" class="founder fade">
-
-<h2>Founder</h2>
-
-<p>
-
-UV Labs was founded by <strong>Utkarsh Sharma</strong> with the vision of transforming healthcare through artificial intelligence.
-
-</p>
-
-<p>
+        <section id="about" class="section about-section">
+            <div class="section-bg">
+                <div class="section-pattern"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">
+                        <span class="title-text">About</span>
+                        <span class="title-underline"></span>
+                    </h2>
+                </div>
+                <div class="about-wrapper">
+                    <div class="about-intro-section">
+                        <div class="about-badge">
+                            <i class="fas fa-shield-check"></i>
+                            <span>Expert Professional</span>
+                        </div>
+                        <p class="about-text">
+                            UV Labs was founded by Utkarsh Sharma with the vision of transforming healthcare through artificial intelligence.
 
 The mission is to build intelligent healthcare systems that empower people and improve medical insights worldwide.
+                        </p>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-content">
+                            <div class="about-features">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-stethoscope"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Pharmacy</h3>
+                                    <p class="feature-desc">Currently pursuing degree of bachelors in Pharmacy from ICFAI School of pharmaceutical sciences, Jaipur</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Healthcare Expertise</h3>
+                                    <p class="feature-desc">Advanced healthcare services by contribution of people from different streams.</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Coding</h3>
+                                    <p class="feature-desc">Designing and implementing various health bots by using programming languages such as HTML,CSS,JavaScript,Python,etc.</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Incident Response</h3>
+                                    <p class="feature-desc">24/7 monitoring and rapid response to emergencies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="security-terminal">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <span class="dot red"></span>
+                                    <span class="dot yellow"></span>
+                                    <span class="dot green"></span>
+                                </div>
+                                <div class="terminal-title">HEALTH ANALYSIS</div>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-line">
+                                    <span class="prompt">#</span>
+                                    <span class="command">nmap -sS target.com</span>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="output">Starting Nmap 7.92...</span>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="output">PORT    STATE  SERVICE</span>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="output">22/tcp  open   ssh</span>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="output">80/tcp  open   http</span>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="output">443/tcp open   https</span>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="output success">[✓] Health scan completed</span>
+                                </div>
+                                <div class="terminal-line">
+                                    <span class="prompt">$</span>
+                                    <span class="cursor">_</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</p>
+        <section id="ai-healthcare-solutions" class="section ai-healthcare-solutions-section">
+            <div class="section-bg">
+                <div class="section-pattern"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">
+                        <span class="title-text">AI Healthcare Solutions</span>
+                        <span class="title-underline"></span>
+                    </h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-brain"></i>
+                                <div class="icon-glow"></div>
+                            </div>
+                            <div class="service-number">01</div>
+                        </div>
+                        <h3 class="service-title">AI Health Systems</h3>
+                        <p class="service-description">
+                            Intelligent systems that analyze symptoms, patterns, and patient data to assist in early diagnosis and monitoring.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Symptom Analysis</li>
+                            <li><i class="fas fa-check"></i> Health Monitoring</li>
+                            <li><i class="fas fa-check"></i> Risk Detection</li>
+                            <li><i class="fas fa-check"></i> AI Predictions</li>
+                        </ul>
+                        <div class="service-footer">
+                            <a href="#contact" class="service-link">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-stethoscope"></i>
+                                <div class="icon-glow"></div>
+                            </div>
+                            <div class="service-number">02</div>
+                        </div>
+                        <h3 class="service-title">Smart Symptom Intelligence</h3>
+                        <p class="service-description">
+                            AI-driven system that understands patient conditions through intelligent questioning and pattern recognition.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Guided AI Questions</li>
+                            <li><i class="fas fa-check"></i> Pattern Recognition</li>
+                            <li><i class="fas fa-check"></i> Risk Analysis</li>
+                            <li><i class="fas fa-check"></i> Health Insights</li>
+                        </ul>
+                        <div class="service-footer">
+                            <a href="#contact" class="service-link">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-heartbeat"></i>
+                                <div class="icon-glow"></div>
+                            </div>
+                            <div class="service-number">03</div>
+                        </div>
+                        <h3 class="service-title">Preventive Healthcare AI</h3>
+                        <p class="service-description">
+                            Advanced AI systems designed to detect potential health risks early and shift healthcare from treatment to prevention.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Early Detection</li>
+                            <li><i class="fas fa-check"></i> Predective Models</li>
+                            <li><i class="fas fa-check"></i> Health Forecasting</li>
+                            <li><i class="fas fa-check"></i> Personalized Insights</li>
+                        </ul>
+                        <div class="service-footer">
+                            <a href="#contact" class="service-link">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</section>
+        <section id="core-technologies" class="section core-technologies-section">
+            <div class="section-bg">
+                <div class="section-pattern"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">
+                        <span class="title-text">Core Technologies</span>
+                        <span class="title-underline"></span>
+                    </h2>
+                </div>
+                <div class="certs-grid">
+                    <div class="cert-card">
+                        <div class="cert-badge">
+                            <i class="fas fa-brain"></i>
+                            <div class="badge-pulse"></div>
+                        </div>
+                        <h3 class="cert-title">AI Models</h3>
+                        <p class="cert-name">Machine Learning & Predictive Systems</p>
+                        <p class="cert-org">Neural Networks | Deep Learning</p>
+                        <div class="cert-year">Active</div>
+                        <div class="cert-glow"></div>
+                            <span class="badge">AI<span>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-badge">
+                            <i class="fas fa-database"></i>
+                            <div class="badge-pulse"></div>
+                        </div>
+                        <h3 class="cert-title">HEALTH DATA</h3>
+                        <p class="cert-name">Medical Data Analysis & Insights</p>
+                        <p class="cert-org">Patient Data | Pattern Recognition</p>
+                        <div class="cert-year">Real-Time</div>
+                        <div class="cert-glow"></div>
+                            <span class="badge">Healthcare</span>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-badge">
+                            <i class="fas fa-microchip"></i>
+                            <div class="badge-pulse"></div>
+                        </div>
+                        <h3 class="cert-title">WEB + AI</h3>
+                        <p class="cert-name">Full Stack AI Integration</p>
+                        <p class="cert-org">Frontend | Backend | AI Systems</p>
+                        <div class="cert-year">Modern Stack</div>
+                        <div class="cert-glow"></div>
+                            <span class="badge">Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<footer>
+        <section id="contact" class="section contact-section">
+            <div class="section-bg">
+                <div class="section-pattern"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">
+                        <span class="title-text">Contact</span>
+                        <span class="title-underline"></span>
+                    </h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:mudgal.utkarsh9889@gmail.com">mudgal.utkarsh9889@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <a href="tel:+917234567890">+91 7234567890</a>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <span>Global - Remote Available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input form-textarea" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <span>Send Message</span>
+                            <i class="fas fa-lock"></i>
+                            <div class="btn-shine"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<p>© 2026 UV Labs</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    © 2026 UV Labs. All rights reserved.
+                </p>
+                <div class="footer-social">
+                    <a href="https://ig.me/m/utkarsh_sharma_6934" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919079294116" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:mudgal.utkarsh9889@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<p>Building the future of AI healthcare</p>
-
-</footer>
-
-<script src="script.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
